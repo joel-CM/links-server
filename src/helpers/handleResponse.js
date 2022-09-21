@@ -1,3 +1,3 @@
-export default (res, msg, error = false) => {
-  return res.json({ msg, error });
+export default (res, statusCode, msg, error = false) => {
+  return res.status(statusCode).json({ msg, error });
 };
