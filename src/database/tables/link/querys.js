@@ -5,3 +5,4 @@ export const createLink = "INSERT INTO links (link, user_id) VALUES (?, ?)";
 export const deleteLink = "DELETE FROM links WHERE id = ? AND user_id = ?";
 export const updateLink =
   "UPDATE yourlink.links SET link = ? WHERE id = ? AND user_id = ?";
+export const validLink = "SELECT id FROM links WHERE id = ?";
