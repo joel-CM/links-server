@@ -53,10 +53,20 @@ controller.updateLink = (req, res) => {
   const idUser = req.token.id;
   const updatedLink = req.body.link.trim();
 
-  db.query(linkQuery.updateLink, [updatedLink, idLink, idUser], (err, data) => {
+  db.query(linkQuery.validLink, [idLink], (err, data) => {
     if (err) return handleResponse(res, 500, err.message, true);
-    if (!data.affectedRows) handleResponse(res, 404, "Link not found!", true);
-    handleResponse(res, 200, `Link updated: ${idLink}`);
+    if (!data[0]) return handleResponse(res, 200, "Link not found!", true);
+
+    db.query(
+      linkQuery.updateLink,
+      [updatedLink, idLink, idUser],
+      (err, data) => {
+        if (err) return handleResponse(res, 500, err.message, true);
+        if (!data.affectedRows)
+          handleResponse(res, 404, "Link not found!", true);
+        handleResponse(res, 200, `Link updated: ${idLink}`);
+      }
+    );
   });
 };
 
