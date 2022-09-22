@@ -4,4 +4,4 @@ export const createTableUsers =
 export const validUser = "SELECT id FROM users WHERE email = ?";
 export const createUser =
   "insert into users (name, lastname, email, password) values (?, ?, ?, ?)";
-export const validEmail = "SELECT * FROM users WHERE BINARY email = ?";
+export const validEmail = "SELECT id, name, lastname, email, password FROM users WHERE BINARY email = ?";
