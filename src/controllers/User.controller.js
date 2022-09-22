@@ -1,6 +1,7 @@
 import db from "../database/db.js";
 import * as userQuery from "../database/tables/user/querys.js";
-import { createToken } from "../jwt/jwt.js";
+import jwt from "jsonwebtoken";
+import { createToken, verify } from "../jwt/jwt.js";
 import bcrypt from "bcrypt";
 import handleResponse from "../helpers/handleResponse.js";
 
@@ -50,9 +51,29 @@ controller.login = (req, res) => {
       return handleResponse(res, 200, "user or password invalid", true);
     }
 
+    const user = {
+      id: data[0].id,
+      name: data[0].name,
+      lastname: data[0].lastname,
+      email: data[0].email,
+    };
     const token = createToken({ id: data[0].id, email: data[0].email });
-    handleResponse(res, 200, { token, user: data[0] });
+    handleResponse(res, 200, { token, user });
   });
+};
+
+controller.verify = (req, res) => {
+  const { token } = req.body;
+  console.log(token);
+
+  const verify = jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    if (err) {
+      return { msg: "invalid or expired token", error: true };
+    }
+    return { msg: "verified token", error: false };
+  });
+
+  handleResponse(res, 200, verify.msg, verify.error);
 };
 
 export default controller;
