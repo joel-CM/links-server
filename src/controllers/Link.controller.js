@@ -17,6 +17,8 @@ controller.createLink = (req, res) => {
   const dirLink = req.body.link.trim();
   const idUser = req.token.id;
 
+  if (!dirLink) return handleResponse(res, 200, "link is empty", true);
+
   db.query(linkQuery.createLink, [dirLink, idUser], (err, data) => {
     if (err) return handleResponse(res, 500, err.message, true);
     if (!data.affectedRows) {
