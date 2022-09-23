@@ -13,6 +13,17 @@ controller.getAllLinks = (req, res) => {
   });
 };
 
+controller.getLinkById = (req, res) => {
+  const idUser = req.token.id;
+  const idLink = req.params.id;
+
+  db.query(linkQuery.selectLinkById, [idLink, idUser], (err, data) => {
+    if (err) return handleResponse(res, 500, err.message, true);
+    if (!data[0]) return handleResponse(res, 404, "Link not found!", true);
+    res.json(data[0]);
+  });
+};
+
 controller.createLink = (req, res) => {
   const dirLink = req.body.link.trim();
   const idUser = req.token.id;
