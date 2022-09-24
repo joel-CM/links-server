@@ -1,7 +1,7 @@
 import db from "../database/db.js";
 import * as userQuery from "../database/tables/user/querys.js";
 import jwt from "jsonwebtoken";
-import { createToken, verify } from "../jwt/jwt.js";
+import { createToken, verify } from "../helpers/jwt.js";
 import bcrypt from "bcrypt";
 import handleResponse from "../helpers/handleResponse.js";
 
