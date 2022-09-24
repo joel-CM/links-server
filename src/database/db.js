@@ -1,4 +1,4 @@
-import mysql from "mysql";
+import mysql from "mysql2";
 import * as userQuery from "./tables/user/querys.js";
 import * as linkQuery from "./tables/link/querys.js";
 import dotenv from "dotenv";
