@@ -1,4 +1,4 @@
-import { verify } from "../jwt/jwt.js";
+import { verify } from "../helpers/jwt";
 
 const auth = (req, res, next) => {
   const token = req.headers?.token;
