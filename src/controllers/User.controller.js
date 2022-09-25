@@ -58,6 +58,7 @@ controller.login = (req, res) => {
       email: data[0].email,
     };
     const token = createToken({ id: data[0].id, email: data[0].email });
+    console.log("TOKENN------------>>>>", token);
     handleResponse(res, 200, { token, user });
   });
 };

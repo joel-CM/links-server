@@ -1,10 +1,7 @@
 import express from "express";
-// import cors from "cors";
 import morgan from "morgan";
 import routes from "./routes/index.routes.js";
 import db from "./database/db.js";
-import dotenv from "dotenv";
-dotenv.config();
 
 const app = express();
 
