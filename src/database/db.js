@@ -1,8 +1,6 @@
 import mysql from "mysql2";
 import * as userQuery from "./tables/user/querys.js";
 import * as linkQuery from "./tables/link/querys.js";
-import dotenv from "dotenv";
-dotenv.config();
 
 const db = mysql.createConnection({
   host: process.env.prod_db_host || process.env.dev_db_host,
