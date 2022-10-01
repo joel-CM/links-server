@@ -4,24 +4,12 @@ import * as linkQuery from "./tables/link/querys.js";
 import dotenv from "dotenv";
 dotenv.config();
 
-const db_name = process.env.prod_db_name || process.env.dev_db_name;
-
 const db = mysql.createPool({
   host: process.env.prod_db_host || process.env.dev_db_host,
   user: process.env.prod_db_user || process.env.dev_db_user,
   password: process.env.prod_db_pwd || process.env.dev_db_pwd,
   port: process.env.prod_db_port || process.env.dev_db_port,
-  database: db_name,
-});
-
-// db.connect((err) => {
-//   errorHandle(err);
-//   console.log("mysql: connection created!");
-// });
-
-db.query(`CREATE DATABASE IF NOT EXISTS ${db_name};`, (err) => {
-  errorHandle(err);
-  console.log(`CREATING DATABASE ${db_name} IF NOT EXISTS`);
+  database: process.env.prod_db_name || process.env.dev_db_name,
 });
 
 db.query(userQuery.createTableUsers, (err) => {
