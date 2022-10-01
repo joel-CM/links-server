@@ -1,3 +1,6 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 export const createTableLinks =
   "CREATE TABLE IF NOT EXISTS links (id int not null auto_increment primary key, link varchar(255), user_id int, FOREIGN KEY(user_id) REFERENCES users(id))";
 export const selectAllLinks = "SELECT * FROM links WHERE user_id = ?";
