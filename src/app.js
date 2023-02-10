@@ -14,7 +14,7 @@ app.use(morgan("dev"));
 app.use((req, res, next) => {
   res.header(
     "Access-Control-Allow-Origin",
-    "https://joelcm-links-client-d1phm60gw-joel-cm.vercel.app"
+    "https://joelcm-links-client.vercel.app"
   );
   res.header(
     "Access-Control-Allow-Headers",
